@@ -4,10 +4,9 @@ const columns = Array.from(
 
 const img = new Image();
 img.src = "/image/bulbasaur.png";
-const canvas = document.createElement("canvas");
-document.body.appendChild(canvas);
-const ctx = canvas.getContext("2d");
-img.onload = function () {
+img.onload = () => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
   ctx.drawImage(img, 0, 0);
 
   let offset = 0;
@@ -16,10 +15,7 @@ img.onload = function () {
       Array.from(cols).forEach((_, cy) => {
         if (columns[cx] && columns[cx][cy]) {
           const pixel = ctx.getImageData(cx, offset + cy, 1, 1);
-          const data = pixel.data;
-          const rgb = `rgb(${data.join(",")})`;
-
-          columns[cx][cy].style.fill = rgb;
+          columns[cx][cy].style.fill = `rgb(${pixel.data.join(",")})`;
         }
       });
     });
