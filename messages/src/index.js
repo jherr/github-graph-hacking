@@ -37,13 +37,13 @@ const writeMessage = (msg, iteration) => {
   Array.from(display).forEach((cols, week) => {
     Array.from(cols).forEach((v, col) => {
       if (columns[week] && columns[week][col]) {
-        recolumns[week][col].style.fill = v ? ON : OFF;
+        columns[week][col].style.fill = v ? ON : OFF;
       }
     });
   });
 };
 
-const message = "This graph is not all that";
+const message = "No Zombies Here";
 
 let offset = 0;
 window.setInterval(() => {
